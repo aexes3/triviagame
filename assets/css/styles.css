@@ -1,0 +1,26 @@
+body{
+    background: #99c6c1;
+    background-image: url('../images/retro.jpg');
+    background-repeat: no-repeat;
+    background-size: 960px 100%;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.button{
+    padding: 2px 2px 2px 2px;
+    width: 125px;
+    text-align: center;
+    margin-left: 48%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.clearButton{
+    padding: 2px 2px 2px 2px;
+    width: 75px;
+    text-align: center;
+    margin-left: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
