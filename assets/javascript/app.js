@@ -20,7 +20,7 @@
             correct: 'Solid State Drive',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/.jpg'
+            imageUrl: '../images/ssd.jpg'
         },
         3: {
             question: 'How many Kilobytes are in a Terabyte',
@@ -28,7 +28,7 @@
             correct: '1e^9',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/.jpg'
+            imageUrl: '../images/bytes.jpg'
         }
     }
 
@@ -97,11 +97,11 @@
             rightCount++;
             //clears out questionContainer
             $('.questionContainer').empty();
-            //  correct image appears when correct
-            //  let newImg = $('<img>');
-            //  newImg.attr('src',correctImg);
-            //  $('.questionContainer').append(newImg);
-            //  console.log(newImg);
+             //correct image appears when correct
+             let newImg = $('<img>');
+             newImg.attr('src',correctImg);
+             $('.questionContainer').append(newImg);
+             console.log(newImg);
 
             let newDiv = $('<div class="rightAnswer">');
             newDiv.text(right);
@@ -121,9 +121,9 @@
             else {
                 $('.questionContainer').empty();
                 //  correct image appears when correct
-                //  let newImg = $('<img>');
-                //  newImg.attr('src',correctImg);
-                //  $('.questionContainer').append(newImg);
+                 let newImg = $('<img>');
+                 newImg.attr('src',correctImg);
+                 $('.questionContainer').append(newImg);
                 let newDiv = $('<div class="rightAnswer">');
                 //adds Good job! Correct! text to div
                 newDiv.text(right);
@@ -141,9 +141,9 @@
             //clearing out questionContainer
             $('.questionContainer').empty;
             //  correct image appears when correct
-            //  let newImg = $('<img>');
-            //  newImg.attr('src',correctImg);
-            //  $('.questionContainer').append(newImg);
+             let newImg = $('<img>');
+             newImg.attr('src',correctImg);
+             $('.questionContainer').append(newImg);
             let newDiv = $('<div class="wrongAnswer">');
             //displays Wrong Choice from wrong:
             newDiv.text(wrong);
@@ -161,9 +161,9 @@
             else {
                 $('.questionContainer').empty();
                 //  correct image appears when correct
-                //  let newImg = $('<img>');
-                //  newImg.attr('src',correctImg);
-                //  $('.questionContainer').append(newImg);
+                 let newImg = $('<img>');
+                 newImg.attr('src',correctImg);
+                 $('.questionContainer').append(newImg);
                 let newDiv = ('<div class="wrongAnswer">')
                 //adding wrong section from object
                 newDiv.text(wrong);
