@@ -1,102 +1,191 @@
-$(document).ready(function(){
+$(document).ready(function () {
 
 
-let count = 1;
+    let count = 1;
+    let triviaTime = 0;
+    let rightCount = 0;
+    let wrongCount = 0;
+    let timer = "";
 
-let questions = {
-    1:{
-    question:'What does HTML stand for in a website?',
-    answers:['Hypertranscript Mark Language','Hypertext Markup Language','Hyerlink and Text Markup Language','Home Tools Master Listener'],
-    correct:'Hypertext Markup Language',
-    right:'Good job! Correct!',
-    wrong: 'Wrong',
-    imageUrl:'../images/.jpg'
-},
-    2:{
-    question:'What is SSD?',
-    answers:['Solid State Data','Solid State Drive','Social Security Disibility','Solid State Disk'],
-    correct:'Solid State Drive',
-    right:'Good job! Correct!',
-    wrong: 'Wrong',
-    imageUrl:'../images/.jpg'  
-},
-    3:{
-        question:'How many Kilobytes are in a Terabyte',
-        answers:['1e^9','1e^12','10e^6','1000'],
-        correct:'1e^9',
-        right:'Good job! Correct!',
-        wrong: 'Wrong',
-        imageUrl:'../images/.jpg' 
-    }
-}
-
-
-//-----------functions-------------
-let emptyQuestions = () => $(".questionContainer").empty();
-
-let start = function(){
-    //when the button is clicked, start Trivia Game
-$('.button').on('click', function(){
-    //clears out current game, if any
-    emptyQuestions()
-    //calling questions fuction
-    getQuestions();
-});
-}
-
-
-let getQuestions = function(){
-//TODO make timer work:
-    //timerOnStart();
-    //get questions
-    let newQuestion = questions[count]['question'];
-    //adds div under --
-    let newDiv = $('<div class="question">');
-    //adds text to question
-    newDiv.html(newQuestion);
-    //sends text to DOM
-    $('.questionContainer').append(newDiv);
-    fetchAnswers();
-    console.log(newQuestion);   
-}
-
-
-function checkAnswer(e){
-    answer = e.target.innerHTML
-    console.log(e.target.innerHTML);
-    console.log(count)
-
-    console.log('true?', answer === questions[count].correct )
-}
-
-
-let fetchAnswers = function(){
-    let newAnswer = questions[count]['answers'].length;
-    for(let i = 0; i < newAnswer; i++){
-        //gets answer from objects
-        let answers = questions[count]['answers'][i];
-        //make button for answers to go into under the start button
-        let ansBtn = $('<button class="answers">');
-        ansBtn.click(checkAnswer)
-        //ansBtn.attr('data-type',answers);
-        //adding text to new buttons
-        ansBtn.html(answers);
-        $('.questionContainer').append(ansBtn);
-
-        console.log(newAnswer);
+    let questions = {
+        1: {
+            question: 'What does HTML stand for in a website?',
+            answers: ['Hypertranscript Mark Language', 'Hypertext Markup Language', 'Hyerlink and Text Markup Language', 'Home Tools Master Listener'],
+            correct: 'Hypertext Markup Language',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/html.jpg'
+        },
+        2: {
+            question: 'What is SSD?',
+            answers: ['Solid State Data', 'Solid State Drive', 'Social Security Disibility', 'Solid State Disk'],
+            correct: 'Solid State Drive',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/.jpg'
+        },
+        3: {
+            question: 'How many Kilobytes are in a Terabyte',
+            answers: ['1e^9', '1e^12', '10e^6', '1000'],
+            correct: '1e^9',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/.jpg'
+        }
     }
 
-}
+
+    //-----------functions-------------
+    let emptyQuestions = () => $(".questionContainer").empty();
+
+    let start = function () {
+        //when the button is clicked, start Trivia Game
+        $('.startButton').on('click', function () {
+            //clears out current game, if any
+            emptyQuestions()
+            //calling questions fuction
+            getQuestions();
+        });
+    }
 
 
+    let getQuestions = function () {
+        //TODO make timer work:
+        //timerOnStart();
+        //get questions
+        let newQuestion = questions[count]['question'];
+        //adds div under --
+        let newDiv = $('<div class="question">');
+        //adds text to question
+        newDiv.html(newQuestion);
+        //sends text to DOM
+        $('.questionContainer').append(newDiv);
+        fetchAnswers();
+        console.log(newQuestion);
+    }
 
 
-//Clears -- in DOM
-$('.clearButton').on('click', function(){
-    emptyQuestions()
-});
+    let fetchAnswers = function () {
+        let newAnswer = questions[count]['answers'].length;
+        for (let i = 0; i < newAnswer; i++) {
+            //gets answer from objects
+            let answers = questions[count]['answers'][i];
+            //make button for answers to go into under the start button
+            let ansBtn = $('<div class="answers alert alert-warning btn" type="button">');
+            ansBtn.click(checkAnswer)
+            //add attribute to div
+            ansBtn.attr('data-type', answers);
+            //adding text to answers buttons
+            ansBtn.html(answers);
+            //placing the answers selctions in the questionContainer Div
+            $('.questionContainer').append(ansBtn);
 
-start();
+            console.log(newAnswer);
+        }
+
+    }
+
+
+    let checkAnswer = function () {
+        let guess = $(this).data('type');
+        let correctAnswer = questions[count]["correct"];
+        let correctImg = questions[count]["imageUrl"];
+        let right = questions[count]["correct"];
+        let wrong = questions[count]["wrong"];
+        console.log(count);
+
+        if (guess === correctAnswer) {
+            //adding to correct counts
+            rightCount++;
+            //clears out questionContainer
+            $('.questionContainer').empty();
+            //  correct image appears when correct
+            //  let newImg = $('<img>');
+            //  newImg.attr('src',correctImg);
+            //  $('.questionContainer').append(newImg);
+            //  console.log(newImg);
+
+            let newDiv = $('<div class="rightAnswer">');
+            newDiv.text(right);
+            $('.questionContainer').append(newDiv);
+
+            //stops timer
+            clearInterval(timer)
+            //adds 1 to question count - moves to next question
+            count++;
+            if (count <= 3) {
+                setTimeout(
+                    function () {
+                        $('.questionContainer').empty();
+                        getQuestions();
+                    }, 9000);
+            }
+            else {
+                $('.questionContainer').empty();
+                //  correct image appears when correct
+                //  let newImg = $('<img>');
+                //  newImg.attr('src',correctImg);
+                //  $('.questionContainer').append(newImg);
+                let newDiv = $('<div class="rightAnswer">');
+                //adds Good job! Correct! text to div
+                newDiv.text(right);
+                //adds answer to dom
+                $('.questionContainer').append(newDiv);
+                //stops time
+                clearInterval(timer);
+                //reset time
+                setTimeout(gameOver, 9000);
+            }
+        }
+        else {
+            //adding to wrong guesses
+            wrongCount++;
+            //clearing out questionContainer
+            $('.questionContainer').empty;
+            //  correct image appears when correct
+            //  let newImg = $('<img>');
+            //  newImg.attr('src',correctImg);
+            //  $('.questionContainer').append(newImg);
+            let newDiv = $('<div class="wrongAnswer">');
+            //displays Wrong Choice from wrong:
+            newDiv.text(wrong);
+            $('.questionContainer').append(newDiv);
+            clearInterval(timer);
+            count++;
+
+            if (count <= 3) {
+                setTimeout(
+                    function () {
+                        $('.questionContainer').empty();
+                        getQuestions();
+                    }, 9000);
+            }
+            else {
+                $('.questionContainer').empty();
+                //  correct image appears when correct
+                //  let newImg = $('<img>');
+                //  newImg.attr('src',correctImg);
+                //  $('.questionContainer').append(newImg);
+                let newDiv = ('<div class="wrongAnswer">')
+                //adding wrong section from object
+                newDiv.text(wrong);
+                //adding questions to dom
+                $('.questionContainer').append(newDiv);
+                //Stoping timer
+                clearInterval(timer);
+                //resetting timer
+                setTimeout(gameOver, 9000);
+            }
+        }
+    }
+
+
+    //Clears -- in DOM
+    $('.clearButton').on('click', function () {
+        emptyQuestions()
+    });
+
+    start();
 
 
 
