@@ -1,5 +1,3 @@
-$(document).ready(function () {
-
 
     let count = 1;
     let triviaTime = 0;
@@ -51,7 +49,7 @@ $(document).ready(function () {
 
     let getQuestions = function () {
         //TODO make timer work:
-        //timerOnStart();
+        timerOnStart();
         //get questions
         let newQuestion = questions[count]['question'];
         //adds div under --
@@ -118,7 +116,7 @@ $(document).ready(function () {
                     function () {
                         $('.questionContainer').empty();
                         getQuestions();
-                    }, 9000);
+                    }, 3000);
             }
             else {
                 $('.questionContainer').empty();
@@ -134,7 +132,7 @@ $(document).ready(function () {
                 //stops time
                 clearInterval(timer);
                 //reset time
-                setTimeout(gameOver, 9000);
+                setTimeout(gameOver, 3000);
             }
         }
         else {
@@ -158,7 +156,7 @@ $(document).ready(function () {
                     function () {
                         $('.questionContainer').empty();
                         getQuestions();
-                    }, 9000);
+                    }, 3000);
             }
             else {
                 $('.questionContainer').empty();
@@ -174,10 +172,79 @@ $(document).ready(function () {
                 //Stoping timer
                 clearInterval(timer);
                 //resetting timer
-                setTimeout(gameOver, 9000);
+                setTimeout(gameOver, 3000);
             }
         }
     }
+
+let timerOnStart = function(){
+    $('.timerSection').empty();
+    //Sets time to 10
+	triviaTime = 100;
+	//Progress Bar
+	let timeTag = $('<div class=" time progress">');
+	let progressBar = $('<div class="progress-bar">');
+	progressBar.width(triviaTime + '%');
+
+	$('.timerSection').append(timeTag);
+	$('.time').append(progressBar);	
+	//Decrements Time
+	timer = setInterval(timeDecrement,100);
+}
+
+
+let timeDecrement = function(){ 
+	//Progress bar decrement
+	$('.progress-bar').width(triviaTime + '%');
+	triviaTime--;
+	//if time gets to 0
+	if(triviaTime === -10){
+		userAnswer = false;
+		//Clears Time
+		clearInterval(timer);
+		checkAnswer();
+	}
+	
+}
+
+
+let gameOver = function(){
+	//Remove everything in trivia section
+	$('.questionContainer').empty();
+	//Remove everthing in timer section
+	$('.timerSection').empty();
+	let scoreDiv = $('<div>');
+	scoreDiv.addClass('score');
+	scoreDiv.html('Correct: ' + rightCount + '<br>' + 'Wrong: ' + wrongCount);
+	$('.triviaGame').append(scoreDiv);
+	//Assign new div element to new Div
+	let newDiv = $('<div>');
+	//add class to new Div
+	newDiv.addClass('gameOver');
+	//add game over text
+	newDiv.text('Game Over! Play Again ?');
+	//Append game over text to DOM
+	$('.trivSection').append(newDiv);
+	//Create ResetButton
+	let newBtn = $('<button>');
+	//Give btn Class
+	newBtn.addClass('redBtn resetBtn');
+	//Give btn reset Text
+	newBtn.text('Reset');
+	//Append
+	$('.trivSection').append(newBtn);
+	//Reset all value
+	triviaTime = 100;
+	count = 1;
+	rightCount = 0;
+	wrongCount = 0;
+	//When reset button is clicked.......
+	    //Clears -- in DOM
+        $('.clearButton').on('click', function () {
+            emptyQuestions()
+        });
+}
+
 
 
     //Clears -- in DOM
@@ -186,8 +253,3 @@ $(document).ready(function () {
     });
 
     start();
-
-
-
-
-});
