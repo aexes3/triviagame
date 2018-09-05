@@ -15,12 +15,12 @@
             imageUrl: '../images/html.jpg'
         },
         2: {
-            question: 'What is SSD?',
-            answers: ['Solid State Data', 'Solid State Drive', 'Social Security Disibility', 'Solid State Disk'],
-            correct: 'Solid State Drive',
+            question: 'What console comands do we use to delete a file?',
+            answers: ['rm', 'rmdir', 'del', 'rmdel'],
+            correct: 'rm',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/ssd.jpg'
+            imageUrl: '../images/rm.jpg',
         },
         3: {
             question: 'How many Kilobytes are in a Terabyte',
@@ -29,7 +29,63 @@
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
             imageUrl: '../images/bytes.jpg'
-        }
+        },
+        4: {
+            question: 'What types of paths allow us to link something to our current document?',
+            answers: ['Concatenate', 'Similar', 'Absolute', 'Relative'],
+            correct: 'Relative',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/relative.jpg'
+        },
+        5: {
+            question: 'Which one is not a traditional CSS display proerty?',
+            answers: ['Block', 'Inline-Block', 'Flex-Block', 'Inline'],
+            correct: 'Flex-Block',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/flex.jpg'
+        },        
+        6: {
+            question: 'What is a quick expression used to print content to the debugger?',
+            answers: ['document.querySelector()', 'console.log()', 'console.dir()', 'document.write()'],
+            correct: 'console.log()',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/console.jpg'
+        },       
+         7: {
+            question: 'What methos is used to add itmes to the end of the array?',
+            answers: ['.shift()', '.pull()', '.push()', '.unshift()'],
+            correct: '.push()',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/push.jpg'
+        },        
+        8: {
+            question: 'Additional Functions Can Access Global Functions?',
+            answers: ['True', 'False'],
+            correct: 'True',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/true.jpg'
+        },
+        9: {
+            question: 'Global Functions Can Access All Functions?',
+            answers: ['True', 'False'],
+            correct: 'False',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/false.jpg'
+        },
+        10: {
+            question: 'What do GoogleMaps, Twitter, Facebook, Amazon have in common?',
+            answers: ['Free Service', 'Server Hosting Platform', 'Social Networking', 'Application Programming Interface'],
+            correct: 'Application Programming Interface',
+            right: 'Good job! Correct!',
+            wrong: 'Wrong Choice',
+            imageUrl: '../images/api.jpg'
+        },
     }
 
 
@@ -53,7 +109,7 @@
         //get questions
         let newQuestion = questions[count]['question'];
         //adds div under --
-        let newDiv = $('<div class="question">');
+        let newDiv = $('<div class="alert alert-dark question">');
         //adds text to question
         newDiv.html(newQuestion);
         //sends text to DOM
@@ -69,7 +125,7 @@
             //gets answer from objects
             let answers = questions[count]['answers'][i];
             //make button for answers to go into under the start button
-            let ansBtn = $('<div class="answers alert alert-warning btn" type="button">');
+            let ansBtn = $('<div class="answers alert alert-primary btn" type="button">');
             ansBtn.click(checkAnswer)
             //add attribute to div
             ansBtn.attr('data-type', answers);
@@ -103,7 +159,7 @@
              $('.questionContainer').append(newImg);
              console.log(newImg);
 
-            let newDiv = $('<div class="rightAnswer">');
+            let newDiv = $('<div class="btn btn-success rightAnswer">');
             newDiv.text(right);
             $('.questionContainer').append(newDiv);
 
@@ -111,12 +167,12 @@
             clearInterval(timer)
             //adds 1 to question count - moves to next question
             count++;
-            if (count <= 3) {
+            if (count <= 10) {
                 setTimeout(
                     function () {
                         $('.questionContainer').empty();
                         getQuestions();
-                    }, 3000);
+                    }, 1500);
             }
             else {
                 $('.questionContainer').empty();
@@ -124,7 +180,7 @@
                  let newImg = $('<img>');
                  newImg.attr('src',correctImg);
                  $('.questionContainer').append(newImg);
-                let newDiv = $('<div class="rightAnswer">');
+                let newDiv = $('<div class="btn btn-success rightAnswer">');
                 //adds Good job! Correct! text to div
                 newDiv.text(right);
                 //adds answer to dom
@@ -132,7 +188,7 @@
                 //stops time
                 clearInterval(timer);
                 //reset time
-                setTimeout(gameOver, 3000);
+                setTimeout(gameOver, 1500);
             }
         }
         else {
@@ -144,19 +200,19 @@
              let newImg = $('<img>');
              newImg.attr('src',correctImg);
              $('.questionContainer').append(newImg);
-            let newDiv = $('<div class="wrongAnswer">');
+            let newDiv = $('<div class="btn btn-danger wrongAnswer">');
             //displays Wrong Choice from wrong:
             newDiv.text(wrong);
             $('.questionContainer').append(newDiv);
             clearInterval(timer);
             count++;
 
-            if (count <= 3) {
+            if (count <= 10) {
                 setTimeout(
                     function () {
                         $('.questionContainer').empty();
                         getQuestions();
-                    }, 3000);
+                    }, 1500);
             }
             else {
                 $('.questionContainer').empty();
@@ -164,7 +220,7 @@
                  let newImg = $('<img>');
                  newImg.attr('src',correctImg);
                  $('.questionContainer').append(newImg);
-                let newDiv = ('<div class="wrongAnswer">')
+                let newDiv = ('<div class="btn btn-danger wrongAnswer">')
                 //adding wrong section from object
                 newDiv.text(wrong);
                 //adding questions to dom
@@ -172,7 +228,7 @@
                 //Stoping timer
                 clearInterval(timer);
                 //resetting timer
-                setTimeout(gameOver, 3000);
+                setTimeout(gameOver, 1500);
             }
         }
     }
@@ -182,7 +238,7 @@ let timerOnStart = function(){
     //Sets time to 10
 	triviaTime = 100;
 	//Progress Bar
-	let timeTag = $('<div class=" time progress">');
+	let timeTag = $('<div class="time progress">');
 	let progressBar = $('<div class="progress-bar">');
 	progressBar.width(triviaTime + '%');
 

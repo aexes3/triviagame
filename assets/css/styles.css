@@ -2,34 +2,41 @@ body{
     background: #99c6c1;
     background-image: url('../images/retro.jpg');
     background-repeat: no-repeat;
-    background-size: 960px 100%;
+    background-size: 80%;
     background-position: center;
     background-attachment: fixed;
 }
 
+.container{
+    top: 300px;
+    background-color: rgba(153, 150, 150, 0.514);
+    padding: 10px;
+    width:50%;
+    height: auto;
+}
+
 .startButton{
     padding: 2px 2px 2px 2px;
-    width: 125px;
     text-align: center;
-    margin-left: 48%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+}
+.alert:hover{
+    color:#fff;
 }
 
 .clearButton{
     padding: 2px 2px 2px 2px;
-    width: 75px;
     text-align: center;
-    margin-left: 50%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .btn{
     padding: 2px 4px 2px 4px;
-    
     text-align: center;
-    margin-left: 45%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    display: block;
+}
+
+.question{
+    text-align: center;
+    color: #fff;
 }
