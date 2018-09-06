@@ -12,7 +12,7 @@
             correct: 'Hypertext Markup Language',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/html.jpg'
+            imageUrl: 'assets/images/html.JPG'
         },
         2: {
             question: 'What console comands do we use to delete a file?',
@@ -20,7 +20,7 @@
             correct: 'rm',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/rm.jpg',
+            imageUrl: 'assets/images/rm.JPG',
         },
         3: {
             question: 'How many Kilobytes are in a Terabyte',
