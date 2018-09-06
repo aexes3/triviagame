@@ -210,7 +210,7 @@
 
             if (count <= 10) {
                 setTimeout(
-                    function () {
+                    function() {
                         $('.questionContainer').empty();
                         getQuestions();
                     }, 3000);
@@ -221,7 +221,7 @@
                  let newImg = $('<img>');
                  newImg.attr('src',correctImg);
                  $('.questionContainer').append(newImg);
-                let newDiv = ('<div class="btn btn-danger wrongAnswer">')
+                let newDiv = $('<div class="btn btn-danger wrongAnswer">')
                 //adding wrong section from object
                 newDiv.text(wrong);
                 //adding questions to dom
