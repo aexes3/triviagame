@@ -12,7 +12,7 @@
             correct: 'Hypertext Markup Language',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/html.jpg'
+            imageUrl: 'assets/images/html.jpg'
         },
         2: {
             question: 'What console comands do we use to delete a file?',
@@ -20,7 +20,7 @@
             correct: 'rm',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/rm.jpg',
+            imageUrl: 'assets/images/rm.jpg',
         },
         3: {
             question: 'How many Kilobytes are in a Terabyte',
@@ -28,7 +28,7 @@
             correct: '1e^9',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/bytes.jpg'
+            imageUrl: 'assets/images/bytes.jpg'
         },
         4: {
             question: 'What types of paths allow us to link something to our current document?',
@@ -36,7 +36,7 @@
             correct: 'Relative',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/relative.jpg'
+            imageUrl: 'assets/images/relative.jpg'
         },
         5: {
             question: 'Which one is not a traditional CSS display proerty?',
@@ -44,7 +44,7 @@
             correct: 'Flex-Block',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/flex.jpg'
+            imageUrl: 'assets/images/flex.jpg'
         },        
         6: {
             question: 'What is a quick expression used to print content to the debugger?',
@@ -52,7 +52,7 @@
             correct: 'console.log()',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/console.jpg'
+            imageUrl: 'assets/images/console.jpg'
         },       
          7: {
             question: 'What methos is used to add itmes to the end of the array?',
@@ -60,7 +60,7 @@
             correct: '.push()',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/push.jpg'
+            imageUrl: 'assets/images/push.jpg'
         },        
         8: {
             question: 'Additional Functions Can Access Global Functions?',
@@ -68,7 +68,7 @@
             correct: 'True',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/true.jpg'
+            imageUrl: 'assets/images/true.jpg'
         },
         9: {
             question: 'Global Functions Can Access All Functions?',
@@ -76,7 +76,7 @@
             correct: 'False',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/false.jpg'
+            imageUrl: 'assets/images/false.jpg'
         },
         10: {
             question: 'What do GoogleMaps, Twitter, Facebook, Amazon have in common?',
@@ -84,7 +84,7 @@
             correct: 'Application Programming Interface',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: '../images/api.jpg'
+            imageUrl: 'assets/images/api.jpg'
         },
     }
 
@@ -172,7 +172,7 @@
                     function () {
                         $('.questionContainer').empty();
                         getQuestions();
-                    }, 1500);
+                    }, 3000);
             }
             else {
                 $('.questionContainer').empty();
@@ -188,7 +188,7 @@
                 //stops time
                 clearInterval(timer);
                 //reset time
-                setTimeout(gameOver, 1500);
+                setTimeout(gameOver, 3000);
             }
         }
         else {
@@ -212,7 +212,7 @@
                     function () {
                         $('.questionContainer').empty();
                         getQuestions();
-                    }, 1500);
+                    }, 3000);
             }
             else {
                 $('.questionContainer').empty();
@@ -228,7 +228,7 @@
                 //Stoping timer
                 clearInterval(timer);
                 //resetting timer
-                setTimeout(gameOver, 1500);
+                setTimeout(gameOver, 3000);
             }
         }
     }
