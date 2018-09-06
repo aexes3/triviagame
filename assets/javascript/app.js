@@ -15,7 +15,7 @@
             imageUrl: 'assets/images/html.JPG'
         },
         2: {
-            question: 'What console comands do we use to delete a file?',
+            question: 'What console comands deletes a file?',
             answers: ['rm', 'rmdir', 'del', 'rmdel'],
             correct: 'rm',
             right: 'Good job! Correct!',
@@ -28,7 +28,7 @@
             correct: '1e^9',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/bytes.jpg'
+            imageUrl: 'assets/images/bytes.JPG'
         },
         4: {
             question: 'What types of paths allow us to link something to our current document?',
@@ -36,7 +36,7 @@
             correct: 'Relative',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/relative.jpg'
+            imageUrl: 'assets/images/relative.JPG'
         },
         5: {
             question: 'Which one is not a traditional CSS display proerty?',
@@ -44,7 +44,7 @@
             correct: 'Flex-Block',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/flex.jpg'
+            imageUrl: 'assets/images/flex.JPG'
         },        
         6: {
             question: 'What is a quick expression used to print content to the debugger?',
@@ -52,15 +52,15 @@
             correct: 'console.log()',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/console.jpg'
+            imageUrl: 'assets/images/console.JPG'
         },       
          7: {
-            question: 'What methos is used to add itmes to the end of the array?',
-            answers: ['.shift()', '.pull()', '.push()', '.unshift()'],
+            question: 'What methods is used to add itmes to the end of the array?',
+            answers: ['.end()', '.pull()', '.push()', '.unshift()'],
             correct: '.push()',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/push.jpg'
+            imageUrl: 'assets/images/push.JPG'
         },        
         8: {
             question: 'Additional Functions Can Access Global Functions?',
@@ -68,7 +68,7 @@
             correct: 'True',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/true.jpg'
+            imageUrl: 'assets/images/true.JPG'
         },
         9: {
             question: 'Global Functions Can Access All Functions?',
@@ -76,7 +76,7 @@
             correct: 'False',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/false.jpg'
+            imageUrl: 'assets/images/false.JPG'
         },
         10: {
             question: 'What do GoogleMaps, Twitter, Facebook, Amazon have in common?',
@@ -84,7 +84,7 @@
             correct: 'Application Programming Interface',
             right: 'Good job! Correct!',
             wrong: 'Wrong Choice',
-            imageUrl: 'assets/images/api.jpg'
+            imageUrl: 'assets/images/api.JPG'
         },
     }
 
@@ -99,16 +99,17 @@
             emptyQuestions()
             //calling questions fuction
             getQuestions();
+            //start button cannot be clicked a second time
+            $('.startButton').off('click');
         });
     }
 
 
     let getQuestions = function () {
-        //TODO make timer work:
         timerOnStart();
         //get questions
         let newQuestion = questions[count]['question'];
-        //adds div under --
+        //adds div under to questionContainer
         let newDiv = $('<div class="alert alert-dark question">');
         //adds text to question
         newDiv.html(newQuestion);
@@ -280,32 +281,25 @@ let gameOver = function(){
 	//add game over text
 	newDiv.text('Game Over! Play Again ?');
 	//Append game over text to DOM
-	$('.trivSection').append(newDiv);
-	//Create ResetButton
-	let newBtn = $('<button>');
-	//Give btn Class
-	newBtn.addClass('redBtn resetBtn');
-	//Give btn reset Text
-	newBtn.text('Reset');
-	//Append
-	$('.trivSection').append(newBtn);
+	$('.triviaGame').append(newDiv);
 	//Reset all value
 	triviaTime = 100;
 	count = 1;
 	rightCount = 0;
 	wrongCount = 0;
-	//When reset button is clicked.......
-	    //Clears -- in DOM
-        $('.clearButton').on('click', function () {
-            emptyQuestions()
-        });
 }
 
 
-
-    //Clears -- in DOM
+    //Create ResetButton
     $('.clearButton').on('click', function () {
-        emptyQuestions()
+        emptyQuestions();
+        $('.score').remove()
+        $('.gameOver').remove()
+        clearInterval(timer);
+        count = 1;
+        rightCount = 0;
+        wrongCount = 0;
+        start();
     });
 
     start();
